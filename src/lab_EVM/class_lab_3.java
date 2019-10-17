@@ -19,7 +19,8 @@ public class class_lab_3 {
 			}		
 		//addition(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
 		//subtraction(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
-		multiplication(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
+		//multiplication(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
+		div(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
 	}
 	
 	public static String Perevod(int ish, int kon, String ch) {
@@ -145,7 +146,7 @@ public class class_lab_3 {
 		return s;
 	}
 	
-	public static void subtraction(String ch1, String ch2) {
+	public static String subtraction(String ch1, String ch2) {
 		char [] mass1 = ch1.toCharArray();
 		char [] mass2 = ch2.toCharArray();
 		int max = 0;
@@ -182,6 +183,18 @@ public class class_lab_3 {
 				mass2obr[i] = mass2[i];
 			}
 		}
+		int maxz = 0;
+		for (int i = 0; i < mass2obr.length; i++) {
+			int tem1 = Character.getNumericValue(mass1obr[i]);
+			int tem2 = Character.getNumericValue(mass2obr[i]);
+			if (tem1 > tem2) {
+				maxz++;
+			} else if (tem1 < tem2 && maxz == 0) {
+				str = "" +  -1;
+				return str;
+			}
+			
+		}
 		int k = 0;
 		for (int i = max - 1; i >= 0 ; i--) {
 			int temp1 = Character.getNumericValue(mass1obr[i]);
@@ -209,15 +222,34 @@ public class class_lab_3 {
 			}
 		}
 		char [] arr = str.toCharArray();
-		if (arr[arr.length - 1] == '0') {
-			str = "";
-			for (int i = 0; i < arr.length - 1; i++) {
-				str += arr[i];
+		int r = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == '0') {
+				r++;
 			}
+		}
+		String s = "";
+		if (r == arr.length) {
+			s += '0';
+			return s;
+		}
+		k = 0;
+		int m = 1;
+		while (k == 0) {
+				if (arr[arr.length - m] == '0') {
+					str = "";
+					for (int i = 0; i < arr.length - m; i++) {
+						str += arr[i];
+					}
+					m++;
+				} else {
+					k = 1;
+				}
 		}
 		StringBuffer End = new StringBuffer(str);
 		End = End.reverse();
-		System.out.println(End);
+		s = "" + End;
+		return(s);
 	}
 	
 	
@@ -243,11 +275,45 @@ public class class_lab_3 {
 		System.out.println(res);
 	}
 	
-	public static void division(String ch1, String ch2) {
-		char [] mas = ch2.toCharArray();
-		String res = "";
-		String Chislo = "" + ch1;
-		
+	public static void div(String ch1, String ch2) {
+		char [] mass = ch1.toCharArray();
+		String end = "";
+		String del = "";
+		for (int i = 0; i < ch1.length(); i++) {
+			del += mass[i];
+			if (subtraction(del,ch2) == "-1" ) {
+				if (del == "0") {
+					del = "";
+				}
+				end += "0";
+			}else if (subtraction(del,ch2) == "0") {
+				del = subtraction(del, ch2);
+				end += "1"; 
+			} else {
+				del = subtraction(del,ch2);
+				end += "1";
+			}
+		}
+		StringBuffer r = new StringBuffer(end);
+		r = r.reverse();
+		end = "" + r;
+		char [] arr = end.toCharArray();
+		end = "";
+		int k = 0;
+		int m = 1;
+		while (k == 0) {
+				if (arr[arr.length - m] == '0') {
+					end = "";
+					for (int i = 0; i < arr.length - m; i++) {
+						end += arr[i];
+					}
+					m++;
+				} else {
+					k = 1;
+				}
+		}
+		r = new StringBuffer(end);
+		r = r.reverse();
+		System.out.print(r);
 	}
-	
 }
