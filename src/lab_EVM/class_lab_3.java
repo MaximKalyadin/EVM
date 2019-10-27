@@ -19,7 +19,7 @@ public class class_lab_3 {
 			}		
 		//addition(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
 		//subtraction(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
-		//multiplication(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
+		multiplication(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
 		div(Perevod(isxodSistema,dvoichnaya,Chislo1),Perevod(isxodSistema,dvoichnaya,Chislo2));
 	}
 	
@@ -143,6 +143,8 @@ public class class_lab_3 {
 		StringBuffer End = new StringBuffer(str);
 		End = End.reverse();
 		String s = "" + End;
+		
+		//System.out.println(s);
 		return s;
 	}
 	
@@ -249,6 +251,7 @@ public class class_lab_3 {
 		StringBuffer End = new StringBuffer(str);
 		End = End.reverse();
 		s = "" + End;
+	//System.out.println(s);
 		return(s);
 	}
 	
