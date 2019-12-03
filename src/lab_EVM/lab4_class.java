@@ -1,5 +1,9 @@
 package lab_EVM;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
 public class lab4_class {
 	static int [][] mass = {{0,0,0,1},
 					 		{0,0,1,0},
@@ -13,6 +17,7 @@ public class lab4_class {
 	static int m = 4;
 	static int [][] arr;
 	static int [][] arr1;
+	static int constanta = 0;
 	public static String out() {
 		String str = "";
 		String out = "";
@@ -37,7 +42,7 @@ public class lab4_class {
 	
 	public static String outKnf() {
 		String out = "";
-		System.out.println("ÊÍÔ");
+		System.out.println("ï¿½ï¿½ï¿½");
 		for (int i = 0; i < n; i++) {
 			if (mass[i][m - 1] == 0) {
 				out += "(";
@@ -78,7 +83,7 @@ public class lab4_class {
 				k++;
 			}
 		}
-		System.out.println("ÄÍÔ");
+		System.out.println("ï¿½ï¿½ï¿½");
 		for (int i = 0; i < n; i++) {
 			if (mass[i][m - 1] == 1) {
 				for (int j = 0; j < m-1; j++) {
@@ -405,5 +410,60 @@ public class lab4_class {
 		System.out.println(eq);
 		return eq;
 	}
-	
+	public static void constan() {
+		constanta = 1;
+	}
+	public static void Draw(Graphics g) {
+		if (constanta == 1) {
+			int st = KOL();
+			for (int i = 0; i < m - 1; i++) {
+				g.setFont(new Font("Tahoma",Font.ITALIC,20));
+				g.setColor(Color.black);
+				g.drawString("x" + (i + 1), i*40,40);
+				g.drawLine(i*40, 55, i*40, 1000);
+			}
+			int y = 70;
+			int  a = 0;
+			for (int i = 0; i < st; i++) {
+				for (int j = 0; j < m - 1; j++) {
+					if (arr[i][j] != -1) {
+						for (int t = 0; t < m - 1; t++) {
+							if (arr[i][t] == 0) {
+								g.fillOval(t*40 - 2, y, 5, 5);
+								g.drawLine(t*40, y + 2, 130, y + 2);
+								g.drawLine(130, y-8, 130, y+10);
+								g.drawLine(130, y-8, 139, y+1);
+								g.drawLine(130, y+10, 139, y+1);
+								g.drawOval(139, y-1, 5, 5);
+								g.drawLine(144, y+1, 157, y+1);
+								y += 20;
+							} else if (arr[i][t] == 1) {
+								g.fillOval(t*40 - 2, y, 5, 5);
+								g.drawLine(t*40, y + 2, 157, y + 2);
+								y += 20;
+							}
+						}
+						g.drawLine(157, y+7, 157, y-60);
+						g.drawLine(157, y+7, 170, y+7);
+						g.drawLine(157, y-60, 170, y-60);
+						g.drawLine(170, y-60, 180, y-50);
+						g.drawLine(170, y+7, 180, y-3);
+						g.drawLine(180, y-50, 180, y-3);
+						g.drawLine(180, y-26, 220 - a, y-26);
+						g.drawLine(220 - a, y-26, 220 - a, 275);
+						g.drawLine(220 - a, 275, 250, 275);
+						a += 7;
+						y += 50;
+						break;
+					}
+				}
+			}
+			g.drawLine(250, 250, 250, 300);
+			g.drawLine(250, 250, 235, 230);
+			g.drawLine(250, 300, 235, 320);
+			g.drawLine(235, 230, 300, 275);
+			g.drawLine(235, 320, 300, 275);
+			g.drawLine(300, 275, 350, 275);
+		}
+	}
 }
